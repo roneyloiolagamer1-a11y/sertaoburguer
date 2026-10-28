@@ -1,0 +1,284 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <title>Sertão Burguer · Cardápio</title>
+  <meta name="description" content="Cardápio digital da Sertão Burguer. Faça seu pedido pelo WhatsApp.">
+  <meta name="theme-color" content="#F28C1E">
+  <meta property="og:title" content="Sertão Burguer · Cardápio">
+  <meta property="og:description" content="O sabor que conquista, a qualidade que fica! Peça pelo WhatsApp.">
+  <meta property="og:image" content="logo-320.jpg">
+  <link rel="icon" href="favicon-48.png" type="image/png">
+  <link rel="apple-touch-icon" href="icone-180.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@600;700&display=swap">
+  <link rel="stylesheet" href="estilo.css">
+  <link rel="preload" as="image" href="logo-320.jpg">
+</head>
+<body>
+  <a class="pular" href="#cardapio">Pular para o cardápio</a>
+
+  <header class="topo">
+    <div class="topo-faixa" aria-hidden="true">
+      <!-- Paisagem do sertão: sol, serras, chão e cactos -->
+      <svg class="cena-sol" viewBox="0 0 100 100">
+        <defs>
+          <linearGradient id="sol-cor" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#FFF0B8"/>
+            <stop offset="1" stop-color="#FFC04D"/>
+          </linearGradient>
+          <mask id="sol-listras">
+            <rect width="100" height="100" fill="#fff"/>
+            <g fill="#000">
+              <rect y="30" width="100" height="2.5"/>
+              <rect y="38" width="100" height="3.5"/>
+              <rect y="47" width="100" height="4.5"/>
+              <rect y="57" width="100" height="5.5"/>
+              <rect y="68" width="100" height="6.5"/>
+            </g>
+          </mask>
+        </defs>
+        <circle cx="50" cy="50" r="50" fill="url(#sol-cor)" mask="url(#sol-listras)"/>
+      </svg>
+      <svg class="cena-serras" viewBox="0 0 2400 100" preserveAspectRatio="xMidYMax slice">
+        <path class="serra-longe" d="M0 100V62L120 48L220 58L340 30L430 44L520 36L640 60L760 40L860 22L960 46L1080 38L1180 56L1300 34L1400 20L1500 42L1620 30L1740 52L1860 36L1980 48L2100 28L2220 50L2320 40L2400 52V100Z"/>
+        <path class="serra-perto" d="M0 100V78L90 70L150 72L200 56L260 54L300 66L420 74L560 68L620 52L700 50L740 64L860 76L1000 72L1080 60L1160 58L1200 70L1340 78L1480 70L1540 54L1620 52L1660 68L1800 76L1940 66L2000 56L2080 55L2120 70L2260 78L2400 72V100Z"/>
+        <path class="chao" d="M0 100V90Q600 81 1200 88T2400 86V100Z"/>
+      </svg>
+      <svg class="cena-cacto cacto-grande" viewBox="0 0 40 64"><path d="M16 64V10a4 4 0 0 1 8 0v54zM24 34h6V20a3.5 3.5 0 0 1 7 0v14a7 7 0 0 1-7 7h-6zM16 40h-5a7 7 0 0 1-7-7V26a3.5 3.5 0 0 1 7 0v7h5z"/></svg>
+      <svg class="cena-cacto cacto-medio" viewBox="0 0 40 64"><path d="M16 64V10a4 4 0 0 1 8 0v54zM24 34h6V20a3.5 3.5 0 0 1 7 0v14a7 7 0 0 1-7 7h-6zM16 40h-5a7 7 0 0 1-7-7V26a3.5 3.5 0 0 1 7 0v7h5z"/></svg>
+      <svg class="cena-cacto cacto-pequeno" viewBox="0 0 40 64"><path d="M16 64V10a4 4 0 0 1 8 0v54zM24 34h6V20a3.5 3.5 0 0 1 7 0v14a7 7 0 0 1-7 7h-6zM16 40h-5a7 7 0 0 1-7-7V26a3.5 3.5 0 0 1 7 0v7h5z"/></svg>
+    </div>
+
+    <div class="topo-conteudo container">
+      <img class="topo-logo" src="logo-320.jpg" width="160" height="160" alt="Logo Sertão Burguer">
+      <div class="topo-info">
+        <h1 class="topo-nome">Sertão Burguer</h1>
+        <p class="topo-local">
+          <span id="topo-cidade">Fortaleza</span>
+          <span aria-hidden="true">·</span>
+          <span id="topo-raio">Entrega até 5 km</span>
+        </p>
+        <button class="status" id="status" type="button" data-estado="fechado" aria-live="polite">
+          <span class="status-ponto" aria-hidden="true"></span>
+          <span id="status-texto">Carregando horário…</span>
+        </button>
+      </div>
+      <div class="topo-acoes">
+        <button class="botao-icone" id="btn-compartilhar" type="button" aria-label="Compartilhar cardápio">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="18" cy="5" r="2.5"/><circle cx="6" cy="12" r="2.5"/><circle cx="18" cy="19" r="2.5"/><path d="M8.2 10.8l7.6-4.4M8.2 13.2l7.6 4.4"/></svg>
+        </button>
+        <button class="botao-texto" id="btn-info" type="button">+ info</button>
+      </div>
+    </div>
+  </header>
+
+  <nav class="categorias" id="categorias" aria-label="Categorias do cardápio">
+    <div class="categorias-trilho container">
+      <button class="categorias-menu" id="btn-menu" type="button" aria-label="Ver todas as categorias">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        <span>Menu</span>
+      </button>
+      <ul class="categorias-lista" id="categorias-lista"></ul>
+    </div>
+  </nav>
+
+  <div class="ferramentas container">
+    <label class="busca">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></svg>
+      <span class="sr-only">Pesquisar no cardápio</span>
+      <input id="busca" type="search" placeholder="Buscar produto" autocomplete="off" maxlength="40" enterkeyhint="search">
+    </label>
+    <label class="ordenar">
+      <span class="sr-only">Ordenar produtos</span>
+      <select id="ordenar">
+        <option value="padrao">Ordenar</option>
+        <option value="menor">Menor preço</option>
+        <option value="maior">Maior preço</option>
+        <option value="nome">Nome (A–Z)</option>
+      </select>
+    </label>
+  </div>
+
+  <main id="cardapio" class="container" tabindex="-1">
+    <div id="secoes"></div>
+    <p class="vazio" id="vazio" hidden></p>
+  </main>
+
+  <footer class="rodape container">
+    <img src="logo-320.jpg" width="56" height="56" alt="" loading="lazy">
+    <p class="rodape-nome">Sertão Burguer</p>
+    <p id="rodape-endereco"></p>
+    <a class="botao botao-whats" id="rodape-whats" href="#" target="_blank" rel="noopener noreferrer">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 0 0-7.8 13.4L3 21l4.7-1.2A9 9 0 1 0 12 3z"/><path d="M9 8.5c0 3.5 2.6 6.5 6.4 6.9l1-1.4-1.9-1-1 .8a5 5 0 0 1-2.6-2.6l.8-1-1-1.9z"/></svg>
+      Chamar no WhatsApp
+    </a>
+    <p class="rodape-nota">Preços sujeitos a alteração sem aviso prévio.</p>
+  </footer>
+
+  <!-- Barra da sacola -->
+  <button class="sacola-barra" id="sacola-barra" type="button" hidden>
+    <span class="sacola-qtd" id="sacola-qtd">0</span>
+    <span>Ver pedido</span>
+    <span class="sacola-total" id="sacola-total">R$ 0,00</span>
+  </button>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <!-- Produto -->
+  <dialog class="folha" id="dlg-produto" aria-labelledby="produto-nome">
+    <div class="folha-corpo">
+      <button class="folha-fechar" type="button" data-fechar aria-label="Fechar">×</button>
+      <div class="produto-midia" id="produto-midia"></div>
+      <div class="folha-conteudo">
+        <h2 class="produto-nome" id="produto-nome"></h2>
+        <p class="produto-desc" id="produto-desc"></p>
+        <p class="produto-preco" id="produto-preco"></p>
+        <label class="campo">
+          <span class="campo-rotulo">Alguma observação? <small>(opcional)</small></span>
+          <textarea id="produto-obs" rows="2" maxlength="140" placeholder="Ex.: sem cebola, ponto da carne…"></textarea>
+        </label>
+      </div>
+      <div class="folha-rodape">
+        <div class="contador" role="group" aria-label="Quantidade">
+          <button type="button" id="produto-menos" aria-label="Diminuir quantidade">−</button>
+          <output id="produto-qtd" aria-live="polite">1</output>
+          <button type="button" id="produto-mais" aria-label="Aumentar quantidade">+</button>
+        </div>
+        <button class="botao botao-principal" type="button" id="produto-adicionar">
+          Adicionar <span id="produto-subtotal"></span>
+        </button>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- Sacola e finalização -->
+  <dialog class="folha" id="dlg-sacola" aria-labelledby="sacola-titulo">
+    <div class="folha-corpo">
+      <button class="folha-fechar" type="button" data-fechar aria-label="Fechar">×</button>
+      <div class="folha-conteudo">
+        <h2 class="folha-titulo" id="sacola-titulo">Seu pedido</h2>
+        <ul class="sacola-itens" id="sacola-itens"></ul>
+
+        <form id="form-pedido" novalidate>
+          <fieldset class="grupo">
+            <legend>Como quer receber?</legend>
+            <div class="opcoes">
+              <label class="opcao"><input type="radio" name="tipo" value="entrega" checked><span>Entrega</span><small id="opcao-taxa"></small></label>
+              <label class="opcao"><input type="radio" name="tipo" value="retirada"><span>Retirada</span><small>Sem taxa</small></label>
+            </div>
+          </fieldset>
+
+          <fieldset class="grupo">
+            <legend>Seus dados</legend>
+            <label class="campo">
+              <span class="campo-rotulo">Nome</span>
+              <input id="cli-nome" name="nome" type="text" autocomplete="name" maxlength="60" required>
+              <span class="campo-erro" id="erro-nome"></span>
+            </label>
+            <div id="bloco-endereco">
+              <label class="campo">
+                <span class="campo-rotulo">Rua e número</span>
+                <input id="cli-rua" name="rua" type="text" autocomplete="street-address" maxlength="100" required>
+                <span class="campo-erro" id="erro-rua"></span>
+              </label>
+              <label class="campo">
+                <span class="campo-rotulo">Bairro</span>
+                <input id="cli-bairro" name="bairro" type="text" maxlength="60" required>
+                <span class="campo-erro" id="erro-bairro"></span>
+              </label>
+              <label class="campo">
+                <span class="campo-rotulo">Complemento / ponto de referência <small>(opcional)</small></span>
+                <input id="cli-ref" name="referencia" type="text" maxlength="100">
+              </label>
+              <p class="dica" id="dica-raio"></p>
+            </div>
+          </fieldset>
+
+          <fieldset class="grupo">
+            <legend>Pagamento</legend>
+            <div class="opcoes" id="opcoes-pagamento"></div>
+            <span class="campo-erro" id="erro-pagamento"></span>
+            <label class="campo" id="bloco-troco" hidden>
+              <span class="campo-rotulo">Troco para quanto? <small>(deixe vazio se não precisar)</small></span>
+              <input id="cli-troco" name="troco" type="text" inputmode="decimal" maxlength="10" placeholder="Ex.: 50">
+              <span class="campo-erro" id="erro-troco"></span>
+            </label>
+          </fieldset>
+
+          <fieldset class="grupo">
+            <legend>Observações do pedido</legend>
+            <label class="campo">
+              <span class="campo-rotulo">Algum pedido especial? <small>(opcional)</small></span>
+              <textarea id="cli-obs" name="observacoes" rows="3" maxlength="200" placeholder="Ex.: quero sem salada, maionese à parte, tocar o interfone…"></textarea>
+            </label>
+          </fieldset>
+        </form>
+
+        <dl class="resumo">
+          <div><dt>Subtotal</dt><dd id="resumo-subtotal"></dd></div>
+          <div id="linha-taxa"><dt>Taxa de entrega</dt><dd id="resumo-taxa"></dd></div>
+          <div class="resumo-total"><dt>Total</dt><dd id="resumo-total"></dd></div>
+        </dl>
+      </div>
+      <div class="folha-rodape folha-rodape-coluna">
+        <p class="aviso-fechado" id="aviso-fechado" hidden></p>
+        <button class="botao botao-whats botao-largo" type="button" id="btn-enviar">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 0 0-7.8 13.4L3 21l4.7-1.2A9 9 0 1 0 12 3z"/><path d="M9 8.5c0 3.5 2.6 6.5 6.4 6.9l1-1.4-1.9-1-1 .8a5 5 0 0 1-2.6-2.6l.8-1-1-1.9z"/></svg>
+          Enviar pedido pelo WhatsApp
+        </button>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- Informações -->
+  <dialog class="folha" id="dlg-info" aria-labelledby="info-titulo">
+    <div class="folha-corpo">
+      <button class="folha-fechar" type="button" data-fechar aria-label="Fechar">×</button>
+      <div class="folha-conteudo">
+        <h2 class="folha-titulo" id="info-titulo">Informações</h2>
+        <div class="info-status" id="info-status"></div>
+
+        <h3 class="info-sub">Horários de atendimento</h3>
+        <ul class="horarios" id="lista-horarios"></ul>
+
+        <h3 class="info-sub">Entrega</h3>
+        <ul class="info-lista" id="info-entrega"></ul>
+
+        <h3 class="info-sub">Endereço</h3>
+        <ul class="info-lista" id="info-endereco"></ul>
+
+        <h3 class="info-sub">Pagamento</h3>
+        <ul class="info-lista" id="info-pagamento"></ul>
+
+        <p class="info-nota">Preços sujeitos a alteração sem aviso prévio.</p>
+      </div>
+      <div class="folha-rodape">
+        <a class="botao botao-whats botao-largo" id="info-whats" href="#" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 0 0-7.8 13.4L3 21l4.7-1.2A9 9 0 1 0 12 3z"/><path d="M9 8.5c0 3.5 2.6 6.5 6.4 6.9l1-1.4-1.9-1-1 .8a5 5 0 0 1-2.6-2.6l.8-1-1-1.9z"/></svg>
+          Chamar no WhatsApp
+        </a>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- Todas as categorias -->
+  <dialog class="folha folha-curta" id="dlg-menu" aria-labelledby="menu-titulo">
+    <div class="folha-corpo">
+      <button class="folha-fechar" type="button" data-fechar aria-label="Fechar">×</button>
+      <div class="folha-conteudo">
+        <h2 class="folha-titulo" id="menu-titulo">Categorias</h2>
+        <ul class="menu-lista" id="menu-lista"></ul>
+      </div>
+    </div>
+  </dialog>
+
+  <script src="config.js"></script>
+  <script src="cardapio.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
